@@ -15,6 +15,7 @@ export function ProfileBox() {
   const [imagePath, setImagePath] = useState("");
   const [state, setState] = useState(true);
 
+  /* Change the image according to the user */
   useEffect(() => {
     function changeImagePath() {
       if (!state) {
@@ -29,6 +30,7 @@ export function ProfileBox() {
     changeImagePath();
   }, [state, gitHubUser.id]);
 
+  /* Take the API data and put it into a state */
   async function searchGitHubUser() {
     const { data } = await api.get(profile);
     setGitHubUser(data);
