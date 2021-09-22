@@ -89,3 +89,28 @@
     font-size: 1.25rem;
   }
 }
+
+.repoBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    margin: 0.5rem 0 1.5rem 0;
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+    color: white;
+  }
+
+  i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  span {
+    font-size: 1.25rem;
+  }
+}

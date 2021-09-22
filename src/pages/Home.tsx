@@ -1,7 +1,7 @@
 import styles from "../styles/BodyProfile.module.scss";
-import { ProfileBox } from "./ProfileBox";
+import { ProfileBox } from "../components/ProfileBox";
 
-export function BodyProfile() {
+export function Home() {
   return (
     <div className={styles.containerBody}>
       <ProfileBox />

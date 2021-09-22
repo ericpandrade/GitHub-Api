@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import styles from "../styles/components/ProfileBox.module.scss";
 
-interface ApiDataProps {
-  data?: string[];
-  name?: string;
-  avatar_url?: string;
-  id?: number;
+import "../assets/icomoon/style.css";
+import { Link } from "react-router-dom";
+import { useProfileContext } from "../context/ProfileContext";
+interface ApiData {
+  name: string;
+  avatar_url: string;
+  id: number;
+  error: string;
 }
 
 export function ProfileBox() {
-  const [profile, setProfile] = useState("");
-  const [gitHubUser, setGitHubUser] = useState({} as ApiDataProps);
+  const { profile, setProfile } = useProfileContext();
+
+  const [gitHubUser, setGitHubUser] = useState({} as ApiData);
   const [imagePath, setImagePath] = useState("");
   const [state, setState] = useState(true);
 
@@ -32,9 +36,13 @@ export function ProfileBox() {
 
   /* Take the API data and put it into a state */
   async function searchGitHubUser() {
-    const { data } = await api.get(profile);
-    setGitHubUser(data);
-    setState(false);
+    try {
+      const { data } = await api.get(profile);
+      setGitHubUser(data);
+      setState(false);
+    } catch {
+      window.alert("Coloque um usuário existente, por favor.");
+    }
   }
 
   return (
@@ -51,6 +59,18 @@ export function ProfileBox() {
           placeholder="Digite o seu profile do GitHub"
         />
         <button onClick={searchGitHubUser}>Pesquisar</button>
+      </div>
+      <div className={styles.repoBox}>
+        <div>
+          <nav>
+            <Link to={"/repos"}>
+              <button>
+                <i className="icon-content_paste" />
+                <span> Repositórios </span>
+              </button>
+            </Link>
+          </nav>
+        </div>
       </div>
     </div>
   );
