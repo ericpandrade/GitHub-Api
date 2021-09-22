@@ -16,40 +16,52 @@ export function ProfileBox() {
   const { profile, setProfile } = useProfileContext();
 
   const [gitHubUser, setGitHubUser] = useState({} as ApiData);
-  const [imagePath, setImagePath] = useState("");
-  const [state, setState] = useState(true);
 
-  /* Change the image according to the user */
   useEffect(() => {
-    function changeImagePath() {
-      if (!state) {
-        setImagePath(
-          `https://avatars.githubusercontent.com/u/${gitHubUser.id}?v=4}`
-        );
-      } else {
-        setImagePath("profile.svg");
-      }
-    }
+    const localStorageUserProfile = localStorage.getItem("@profileBox/profile");
+    const localStorageUserData = localStorage.getItem("@profileBox/gitHubUser");
 
-    changeImagePath();
-  }, [state, gitHubUser.id]);
+    setGitHubUser(JSON.parse(localStorageUserData || "{}"));
+    setProfile(localStorageUserProfile || "");
+  }, [setProfile, setGitHubUser]);
 
   /* Take the API data and put it into a state */
   async function searchGitHubUser() {
     try {
       const { data } = await api.get(profile);
+
+      localStorage.setItem("@profileBox/profile", profile);
+      localStorage.setItem("@profileBox/gitHubUser", JSON.stringify(data));
+
       setGitHubUser(data);
-      setState(false);
     } catch {
-      window.alert("Coloque um usuário existente, por favor.");
+      window.alert("Coloque um usuário existente, por favor!");
+    }
+  }
+
+  function imagePath() {
+    if (gitHubUser.avatar_url === undefined) {
+      return "profile.svg";
+    } else {
+      return `https://avatars.githubusercontent.com/u/${gitHubUser.id}?v=4`;
+    }
+  }
+
+  function textPath() {
+    if (gitHubUser.name === undefined) {
+      return "Search GitHub Profile.";
+    } else if (gitHubUser.name === null) {
+      return "Essa pessoa não possui um nome.";
+    } else {
+      return gitHubUser.name;
     }
   }
 
   return (
     <div className={styles.profileBox}>
       <div className={styles.imageBox}>
-        <p>{state ? "Search GitHub" : gitHubUser.name}</p>
-        <img src={imagePath} alt="Profile" loading="lazy" />
+        <p>{textPath()}</p>
+        <img src={imagePath()} alt="Profile" loading="lazy" />
       </div>
       <div className={styles.searchBox}>
         <input

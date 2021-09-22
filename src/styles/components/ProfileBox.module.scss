@@ -100,14 +100,31 @@
   }
 
   button {
+    display: flex;
+    align-items: center;
+
     background: transparent;
     border: 0;
     color: white;
-  }
+    padding: 1rem;
+    background: rgba(213, 217, 228, 0.1);
+    border-radius: 0.5rem;
 
-  i {
-    font-size: 1.5rem;
-    margin-right: 1rem;
+    &:hover {
+      transition: 0.3s;
+      background: rgba(213, 217, 228, 0.2);
+    }
+
+    i {
+      display: inline-block;
+      font-size: 1.5rem;
+      margin-right: 0.75rem;
+
+      &:hover {
+        transition: 0.3s;
+        transform: translateY(-0.3rem);
+      }
+    }
   }
 
   span {

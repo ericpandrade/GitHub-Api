@@ -6,7 +6,9 @@ const RepoBox = () => {
   return (
     <div>
       <div className={styles.RepoBoxContainer}>
-        <h1>Olá, {profile}!</h1>
+        <div className={styles.IntroductionContainer}>
+          <p>{profile}</p>
+        </div>
       </div>
     </div>
   );
