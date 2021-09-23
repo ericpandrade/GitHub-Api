@@ -28,7 +28,7 @@ export function ProfileBox() {
   /* Take the API data and put it into a state */
   async function searchGitHubUser() {
     try {
-      const { data } = await api.get(profile);
+      const { data } = await api.get("users/" + profile);
 
       localStorage.setItem("@profileBox/profile", profile);
       localStorage.setItem("@profileBox/gitHubUser", JSON.stringify(data));

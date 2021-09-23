@@ -1,9 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import { useProfileContext } from "../context/ProfileContext";
+import api from "../services/api";
 import styles from "../styles/components/RepoBox.module.scss";
+
+interface reposData {
+  name: string;
+  description: string;
+}
 
 const RepoBox = () => {
   const { profile, setProfile } = useProfileContext();
+  const [repos, setRepos] = useState<reposData[]>([]);
 
   useEffect(() => {
     const localStorageUserProfile = localStorage.getItem("@profileBox/profile");
@@ -11,14 +19,36 @@ const RepoBox = () => {
     setProfile(localStorageUserProfile || "");
   }, [setProfile]);
 
-  return (
-    <div>
-      <div className={styles.RepoBoxContainer}>
-        <header>
-          <h1>Repositórios GitHub do {profile}.</h1>
-        </header>
+  useEffect(() => {
+    async function handleGitRepos() {
+      const { data } = await api.get("users/" + profile + "/repos");
 
-        <div className={styles.IntroductionContainer}></div>
+      setRepos(data);
+    }
+
+    handleGitRepos();
+  }, [profile]);
+
+  return (
+    <div className={styles.RepoContainer}>
+      <h1>
+        Repositórios GitHub do <span>{profile}</span>.
+      </h1>
+      <div className={styles.BoxRepos}>
+        <div>
+          {repos.map((repos) => {
+            return (
+              <div className={styles.Repos}>
+                <div className={styles.RepoName}>{repos.name}:</div>
+                <div className={styles.RepoDescriptions}>
+                  {!repos.description
+                    ? "O repositório não possui descrição"
+                    : repos.description}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

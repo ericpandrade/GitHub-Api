@@ -1,7 +1,34 @@
-.RepoBoxContainer {
+.RepoContainer {
   margin: 1.5rem;
   h1 {
     margin-bottom: 1.5rem;
     font-size: 1.75rem;
   }
+  & > h1 > span {
+    color: #2660a4;
+  }
+}
+
+.Repos {
+  display: flex;
+  align-items: center;
+
+  max-width: max-content;
+
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+
+  background: #56666b;
+}
+
+.RepoName {
+  margin-right: 1.5rem;
+}
+
+.RepoDescriptions {
+  color: #f6f8ff;
 }
