@@ -1,14 +1,24 @@
+import { useEffect } from "react";
 import { useProfileContext } from "../context/ProfileContext";
 import styles from "../styles/components/RepoBox.module.scss";
 
 const RepoBox = () => {
-  const { profile } = useProfileContext();
+  const { profile, setProfile } = useProfileContext();
+
+  useEffect(() => {
+    const localStorageUserProfile = localStorage.getItem("@profileBox/profile");
+
+    setProfile(localStorageUserProfile || "");
+  }, [setProfile]);
+
   return (
     <div>
       <div className={styles.RepoBoxContainer}>
-        <div className={styles.IntroductionContainer}>
-          <p>{profile}</p>
-        </div>
+        <header>
+          <h1>Repositórios GitHub do {profile}.</h1>
+        </header>
+
+        <div className={styles.IntroductionContainer}></div>
       </div>
     </div>
   );

@@ -18,11 +18,11 @@ export function ProfileBox() {
   const [gitHubUser, setGitHubUser] = useState({} as ApiData);
 
   useEffect(() => {
-    const localStorageUserProfile = localStorage.getItem("@profileBox/profile");
     const localStorageUserData = localStorage.getItem("@profileBox/gitHubUser");
+    const localStorageUserProfile = localStorage.getItem("@profileBox/profile");
 
-    setGitHubUser(JSON.parse(localStorageUserData || "{}"));
     setProfile(localStorageUserProfile || "");
+    setGitHubUser(JSON.parse(localStorageUserData || "{}"));
   }, [setProfile, setGitHubUser]);
 
   /* Take the API data and put it into a state */
