@@ -1,8 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom";
 import Routes from "./Routes";
 
-import "./styles/globais.css";
+import "./styles/globais.scss";
 
 ReactDOM.render(
   <Routes />,
