@@ -79,7 +79,6 @@ Start the server
 ![Desktop Design](public/DesignDesktop.jpeg)
 
 <br/>
-<br/>
 
 ### **Mobile**
 
