@@ -93,7 +93,7 @@ Start the server
 
 ## Contact
 
-<div style="display: flex; gap: 1rem;">
+<div style="display: inline; margin-right:16pt;">
 <a href = "mailto:ericpandrade085@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=red" target="_blank">
 
 <a href="https://www.linkedin.com/in/eric-pereira-andrade-872a01210/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
