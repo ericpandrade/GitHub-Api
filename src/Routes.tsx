@@ -6,7 +6,7 @@ import Repos from "./pages/Repos";
 export default function Routes() {
   return (
     <ProfileContextProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/repos" component={Repos} exact={true} />
           <Route path="/" component={Home} />
