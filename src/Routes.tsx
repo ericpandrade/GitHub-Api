@@ -8,8 +8,8 @@ export default function Routes() {
     <ProfileContextProvider>
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={Home} exact={true} />
           <Route path="/repos" component={Repos} exact={true} />
+          <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </ProfileContextProvider>

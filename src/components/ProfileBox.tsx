@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import styles from "../styles/components/ProfileBox.module.scss";
@@ -23,9 +24,8 @@ export function ProfileBox() {
 
     setProfile(localStorageUserProfile || "");
     setGitHubUser(JSON.parse(localStorageUserData || "{}"));
-  }, [setProfile, setGitHubUser]);
+  }, []);
 
-  /* Take the API data and put it into a state */
   async function searchGitHubUser() {
     try {
       const { data } = await api.get("users/" + profile);
@@ -35,6 +35,8 @@ export function ProfileBox() {
 
       setGitHubUser(data);
     } catch {
+      localStorage.removeItem("@profileBox/profile");
+      localStorage.removeItem("@profileBox/gitHubUser");
       window.alert("Coloque um usuário existente, por favor!");
     }
   }

@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
 
-import { useProfileContext } from "../context/ProfileContext";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+
 import api from "../services/api";
 import styles from "../styles/components/RepoBox.module.scss";
 
@@ -10,29 +12,51 @@ interface reposData {
 }
 
 const RepoBox = () => {
-  const { profile, setProfile } = useProfileContext();
   const [repos, setRepos] = useState<reposData[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const localStorageData = localStorage.getItem("@profileBox/profile");
+
+  const history = useHistory();
 
   useEffect(() => {
-    const localStorageUserProfile = localStorage.getItem("@profileBox/profile");
+    async function HandleGitRepos() {
+      setLoading(true);
+      try {
+        const { data } = await api.get("users/" + localStorageData + "/repos");
 
-    setProfile(localStorageUserProfile || "");
-  }, [setProfile]);
+        if (localStorageData !== null) {
+          setRepos(data);
+        }
 
-  useEffect(() => {
-    async function handleGitRepos() {
-      const { data } = await api.get("users/" + profile + "/repos");
-
-      setRepos(data);
+        console.log(localStorageData);
+      } catch {
+      } finally {
+        setLoading(false);
+      }
     }
 
-    handleGitRepos();
-  }, [profile]);
+    HandleGitRepos();
+  }, []);
+
+  if (loading) return <h1>Carregando...</h1>;
+
+  if (localStorageData === null) {
+    history.push("/");
+
+    window.alert("Essa pessoa não possui um repositório.");
+  }
 
   return (
     <div className={styles.RepoContainer}>
       <h1>
-        Repositórios GitHub do <span>{profile}</span>.<br></br>
+        Repositórios GitHub do(a){" "}
+        <span>
+          {!localStorageData
+            ? "Essa pessoa não possui um nome"
+            : localStorageData}
+        </span>
+        .<br></br>
         {repos.length === 0 ? (
           <span className={styles.span}>
             Essa pessoa não possui um repositório!
@@ -45,7 +69,7 @@ const RepoBox = () => {
         <div>
           {repos.map((repos) => {
             return (
-              <div className={styles.Repos}>
+              <div className={styles.Repos} key={repos.name}>
                 <div className={styles.RepoName}>{repos.name}</div>
                 <div className={styles.RepoDescriptions}>
                   {!repos.description
