@@ -15,7 +15,7 @@ Realizei uma aplicação, onde consome a API do GitHub, com o intuito de treinar
 
 <span style="font-family: 'Poppins', sans-serif;font-size:9pt">
 
-Você pode acompanhar o site pelo Link:
+Você pode acompanhar o site pelo Link: https://ericpandrade.github.io/GitHub-Api/
 
 </span>
 
