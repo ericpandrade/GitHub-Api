@@ -28,8 +28,6 @@ const RepoBox = () => {
         if (localStorageData !== null) {
           setRepos(data);
         }
-
-        console.log(localStorageData);
       } catch {
       } finally {
         setLoading(false);
