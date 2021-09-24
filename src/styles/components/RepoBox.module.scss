@@ -3,9 +3,13 @@
   h1 {
     margin-bottom: 1.5rem;
     font-size: 1.75rem;
-  }
-  & > h1 > span {
-    color: #2660a4;
+    & > span {
+      color: #2660a4;
+    }
+
+    .span {
+      color: #dd0426;
+    }
   }
 }
 

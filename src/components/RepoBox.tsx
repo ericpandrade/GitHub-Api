@@ -32,14 +32,21 @@ const RepoBox = () => {
   return (
     <div className={styles.RepoContainer}>
       <h1>
-        Repositórios GitHub do <span>{profile}</span>.
+        Repositórios GitHub do <span>{profile}</span>.<br></br>
+        {repos.length === 0 ? (
+          <span className={styles.span}>
+            Essa pessoa não possui um repositório!
+          </span>
+        ) : (
+          ""
+        )}
       </h1>
       <div className={styles.BoxRepos}>
         <div>
           {repos.map((repos) => {
             return (
               <div className={styles.Repos}>
-                <div className={styles.RepoName}>{repos.name}:</div>
+                <div className={styles.RepoName}>{repos.name}</div>
                 <div className={styles.RepoDescriptions}>
                   {!repos.description
                     ? "O repositório não possui descrição"
