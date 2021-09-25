@@ -37,27 +37,27 @@ const RepoBox = () => {
     HandleGitRepos();
   }, []);
 
-  if (loading) return <h1>Carregando...</h1>;
+  if (loading) return <h1>Loading...</h1>;
 
   if (localStorageData === null) {
     history.push("/");
 
-    window.alert("Essa pessoa não possui um repositório.");
+    window.alert("This person does not have a repository.");
   }
 
   return (
     <div className={styles.RepoContainer}>
       <h1>
-        Repositórios GitHub do(a){" "}
+        Github Repositories{" "}
         <span>
           {!localStorageData
-            ? "Essa pessoa não possui um nome"
+            ? "This person does not have a name."
             : localStorageData}
         </span>
         .<br></br>
         {repos.length === 0 ? (
           <span className={styles.span}>
-            Essa pessoa não possui um repositório!
+            This person does not have a repository!
           </span>
         ) : (
           ""
@@ -71,7 +71,7 @@ const RepoBox = () => {
                 <div className={styles.RepoName}>{repos.name}</div>
                 <div className={styles.RepoDescriptions}>
                   {!repos.description
-                    ? "O repositório não possui descrição"
+                    ? "The repository has no description"
                     : repos.description}
                 </div>
               </div>

@@ -17,7 +17,7 @@
   p {
     margin: 1.5rem;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 
   img {
@@ -45,7 +45,7 @@
   }
 
   div {
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
   }
 
@@ -59,12 +59,15 @@
     background-color: #bfbdc1;
     color: var(--black);
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 00;
 
     &:hover {
       color: var(--white);
+      box-shadow: none;
+      background-color: #63636395;
       transition: 0.3s;
-      background-color: #636363;
+      transform: translateY(-0.2rem) translateX(-0.1rem);
+      font-size: 400;
     }
   }
 }
@@ -86,7 +89,7 @@
     margin: 2rem;
     border-radius: 0.5rem;
 
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 }
 
@@ -109,21 +112,23 @@
     padding: 1rem;
     background: rgba(213, 217, 228, 0.1);
     border-radius: 0.5rem;
+    font-weight: 500;
 
     &:hover {
-      transition: 0.3s;
+      transition: 0.15s;
       background: rgba(213, 217, 228, 0.2);
+      font-size: 400;
+
+      i {
+        transition: 0.3s;
+        transform: translateY(-0.09rem);
+      }
     }
 
     i {
       display: inline-block;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       margin-right: 0.75rem;
-
-      &:hover {
-        transition: 0.3s;
-        transform: translateY(-0.3rem);
-      }
     }
   }
 

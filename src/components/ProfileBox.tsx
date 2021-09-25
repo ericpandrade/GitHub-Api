@@ -17,6 +17,7 @@ export function ProfileBox() {
   const { profile, setProfile } = useProfileContext();
 
   const [gitHubUser, setGitHubUser] = useState({} as ApiData);
+  const [errorState, setErrorState] = useState(false);
 
   useEffect(() => {
     const localStorageUserData = localStorage.getItem("@profileBox/gitHubUser");
@@ -34,15 +35,17 @@ export function ProfileBox() {
       localStorage.setItem("@profileBox/gitHubUser", JSON.stringify(data));
 
       setGitHubUser(data);
+      setErrorState(false);
     } catch {
       localStorage.removeItem("@profileBox/profile");
       localStorage.removeItem("@profileBox/gitHubUser");
-      window.alert("Coloque um usuário existente, por favor!");
+      window.alert("Enter an existing user please!");
+      setErrorState(true);
     }
   }
 
   function imagePath() {
-    if (gitHubUser.avatar_url === undefined) {
+    if (gitHubUser.avatar_url === undefined || errorState === true) {
       return "profile.svg";
     } else {
       return `https://avatars.githubusercontent.com/u/${gitHubUser.id}?v=4`;
@@ -50,10 +53,10 @@ export function ProfileBox() {
   }
 
   function textPath() {
-    if (gitHubUser.name === undefined) {
+    if (gitHubUser.name === undefined || errorState === true) {
       return "Search GitHub Profile.";
     } else if (gitHubUser.name === null) {
-      return "Essa pessoa não possui um nome.";
+      return "This person has not registered their name.";
     } else {
       return gitHubUser.name;
     }
@@ -70,9 +73,9 @@ export function ProfileBox() {
           type="text"
           value={profile}
           onChange={(event) => setProfile(event.target.value)}
-          placeholder="Digite o seu profile do GitHub"
+          placeholder="Enter your GitHub profile"
         />
-        <button onClick={searchGitHubUser}>Pesquisar</button>
+        <button onClick={searchGitHubUser}>Search</button>
       </div>
       <div className={styles.repoBox}>
         <div>
@@ -80,7 +83,7 @@ export function ProfileBox() {
             <Link to={"/repos"}>
               <button>
                 <i className="icon-content_paste" />
-                <span> Repositórios </span>
+                <span> Repositories </span>
               </button>
             </Link>
           </nav>
