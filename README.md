@@ -77,7 +77,9 @@ Start the server
 
 <br />
 
-![Desktop Design](public/DesignDesktop.jpeg)
+![Design Desktop](public/DesignDesktop.jpeg)
+
+![Design Repos Desktop](public/DesignReposDesktop.jpeg)
 
 <br/>
 <br/>
@@ -86,7 +88,9 @@ Start the server
 
 <br />
 
-![Desktop Mobile](public/DesignMobile.jpeg)
+![Design Mobile](public/DesignMobile.jpeg)
+
+![Design Repos Mobile](public/DesignReposMobile.jpeg)
 
 <br/>
 <br/>
