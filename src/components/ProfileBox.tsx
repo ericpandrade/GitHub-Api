@@ -41,6 +41,7 @@ export function ProfileBox() {
       localStorage.removeItem("@profileBox/gitHubUser");
       window.alert("Enter an existing user please!");
       setErrorState(true);
+      setProfile("");
     }
   }
 
