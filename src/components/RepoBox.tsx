@@ -27,6 +27,7 @@ const RepoBox = () => {
   const { gitHubUser } = useProfileContext();
   const [repos, setRepos] = useState<reposData[]>([]);
   const [loading, setLoading] = useState(false);
+  const [reposEmpty, setReposEmpty] = useState(false);
 
   const localStorageData = localStorage.getItem("@profileBox/profile");
 
@@ -40,6 +41,10 @@ const RepoBox = () => {
 
         if (localStorageData !== null) {
           setRepos(data);
+        }
+
+        if (repos.length === 0) {
+          setReposEmpty(true);
         }
       } catch {
       } finally {
@@ -71,15 +76,16 @@ const RepoBox = () => {
         </div>
       </div>
 
-      <h1>
-        {repos.length === 0 ? (
-          <span className={styles.span}>
-            This person does not have a repository!
-          </span>
-        ) : (
-          ""
-        )}
-      </h1>
+      {reposEmpty && (
+        <h1>
+          {repos.length === 0 && (
+            <span className={styles.span}>
+              This person does not have a repository!
+            </span>
+          )}
+        </h1>
+      )}
+
       <div className={styles.BoxRepos}>
         <div>
           {repos.map((repos) => {
