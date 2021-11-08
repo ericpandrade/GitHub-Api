@@ -6,17 +6,11 @@ import styles from "../styles/components/ProfileBox.module.scss";
 import "../assets/icomoon/style.css";
 import { Link } from "react-router-dom";
 import { useProfileContext } from "../context/ProfileContext";
-interface ApiData {
-  name: string;
-  avatar_url: string;
-  id: number;
-  error: string;
-}
 
 export function ProfileBox() {
-  const { profile, setProfile } = useProfileContext();
+  const { profile, setProfile, gitHubUser, setGitHubUser } =
+    useProfileContext();
 
-  const [gitHubUser, setGitHubUser] = useState({} as ApiData);
   const [errorState, setErrorState] = useState(false);
 
   useEffect(() => {
