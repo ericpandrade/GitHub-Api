@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect, useState } from "react";
@@ -35,8 +36,8 @@ const RepoBox = () => {
 
   useEffect(() => {
     async function HandleGitRepos() {
-      setLoading(true);
       try {
+        setLoading(true);
         const { data } = await api.get("users/" + localStorageData + "/repos");
 
         if (localStorageData !== null) {
@@ -55,7 +56,13 @@ const RepoBox = () => {
     HandleGitRepos();
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading)
+    return (
+      <div className={styles.Loading}>
+        <img src="Loading.png" alt="GitHub Image" />
+        <h1>Loading...</h1>
+      </div>
+    );
 
   if (localStorageData === null) {
     history.push("/");
